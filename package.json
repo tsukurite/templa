@@ -1,5 +1,9 @@
 {
   "private": true,
+  "scripts": {
+    "babel": "babel ./src -d ./lib",
+    "babel-watch": "npm run babel -- -w"
+  },
   "devDependencies": {
     "babel-cli": "^6.11.4",
     "babel-preset-es2015": "^6.9.0"
