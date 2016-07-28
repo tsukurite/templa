@@ -1,5 +1,6 @@
 {
   "private": true,
+  "bin": "./bin/templa",
   "scripts": {
     "babel": "babel ./src -d ./lib",
     "babel-watch": "npm run babel -- -w"
