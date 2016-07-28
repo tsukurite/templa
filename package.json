@@ -8,6 +8,7 @@
     "clean": "rimraf ./lib/*.js",
     "mocha": "mocha ./test/**/*.js",
     "mocha-watch": "npm run mocha -- -w",
+    "prepublish": "npm run clean && npm run babel",
     "test": "npm run mocha"
   },
   "dependencies": {
