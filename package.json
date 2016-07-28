@@ -1,0 +1,39 @@
+{
+  "name": "templa",
+  "version": "0.1.0",
+  "author": "sasa+1 <sasaplus1@gmail.com>",
+  "description": "generator",
+  "bin": "./bin/templa",
+  "main": "./index.js",
+  "private": true,
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tsukurite/templa.git"
+  },
+  "scripts": {
+    "babel": "babel ./src -d ./lib",
+    "babel-watch": "npm run babel -- -w",
+    "clean": "rimraf ./lib/*.js",
+    "mocha": "mocha ./test/**/*.js",
+    "mocha-watch": "npm run mocha -- -w",
+    "prepublish": "npm run clean && npm run babel",
+    "test": "npm run mocha"
+  },
+  "dependencies": {
+    "commander": "^2.9.0",
+    "lodash.frompairs": "^4.0.1",
+    "lodash.uniq": "^4.4.0",
+    "lodash.zip": "^4.1.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.11.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-power-assert": "^1.0.0",
+    "babel-register": "^6.11.6",
+    "mocha": "^2.5.3",
+    "power-assert": "^1.4.1",
+    "rimraf": "^2.5.4"
+  }
+}

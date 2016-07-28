@@ -1,0 +1,91 @@
+#!/usr/bin/env node
+
+'use strict';
+
+process.title = require('../package').name;
+
+process.on('uncaughtException', function(err) {
+  console.error(err);
+  process.exit(1);
+});
+
+//------------------------------------------------------------------------------
+
+var fs = require('fs'),
+    path = require('path');
+
+var commander = require('commander');
+
+var templa = require('../');
+
+commander
+  .version(require('../package').version)
+  .usage('[options] <file>')
+  .option('-f, --force', 'overwrite the file')
+  .option('-o, --output <file>', 'output to file')
+  .option('--cwd <directory>', 'change working directory')
+  .parse(process.argv);
+
+//------------------------------------------------------------------------------
+
+var isForce = !!commander.force;
+
+var cwd = commander.cwd;
+
+var input = commander.args[0],
+    output = commander.output;
+
+//------------------------------------------------------------------------------
+
+if (!input) {
+  commander.help();
+}
+
+var file = path.resolve(process.cwd(), input);
+
+var configs;
+
+switch (path.extname(input)) {
+  case '.js':
+    configs = require(file);
+    break;
+  case '.json':
+    configs = JSON.parse(
+      fs.readFileSync(file, { encoding: 'utf8' })
+    );
+    break;
+  case '.yml':
+  case '.yaml':
+    configs = require('js-yaml').safeLoad(
+      fs.readFileSync(file, { encoding: 'utf8' })
+    );
+    break;
+  default:
+    configs = require(file);
+}
+
+//------------------------------------------------------------------------------
+
+var result = templa.generate(configs, cwd);
+
+if (output) {
+  try {
+    fs.accessSync(output, fs.F_OK);
+
+    if (!isForce) {
+      // file is found, and --force is not passed
+      console.error(output + ' is already exists.');
+      console.error('if you want to overwrite the file, pass --force option.');
+
+      process.exit(2);
+
+      return;
+    }
+  } catch(e) {}
+
+  // output to file
+  fs.writeFileSync(output, result);
+} else {
+  // output to stdout
+  process.stdout.write(result);
+}
