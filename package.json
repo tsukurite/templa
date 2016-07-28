@@ -1,7 +1,17 @@
 {
-  "private": true,
+  "name": "templa",
+  "version": "0.0.0",
+  "author": "sasa+1 <sasaplus1@gmail.com>",
+  "description": "generator",
   "bin": "./bin/templa",
   "main": "./index.js",
+  "private": true,
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tsukurite/templa.git"
+  },
   "scripts": {
     "babel": "babel ./src -d ./lib",
     "babel-watch": "npm run babel -- -w",
