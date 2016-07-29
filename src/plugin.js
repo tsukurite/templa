@@ -2,8 +2,6 @@
 
 const path = require('path');
 
-const cwd = process.cwd();
-
 /**
  * load plugin
  *
@@ -25,7 +23,11 @@ function load(name) {
  * @param {String} [dir]
  * @return {*}
  */
-function resolve(name, dir = cwd) {
+function resolve(name, dir = null) {
+  if (dir === null) {
+    return load(`templa-te-${name}`) || load(name);
+  }
+
   return load(
     path.resolve(dir, `templa-te-${name}`)
   ) || load(
