@@ -1,3 +1,7 @@
+# 0.1.2 / 2016-07-29
+
+- fix module loading
+
 # 0.1.1 / 2016-07-28
 
 - add compiled scripts

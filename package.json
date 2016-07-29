@@ -1,6 +1,6 @@
 {
   "name": "templa",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "sasa+1 <sasaplus1@gmail.com>",
   "description": "generator",
   "bin": "./bin/templa",
@@ -23,10 +23,10 @@
     "test": "npm run mocha"
   },
   "dependencies": {
-    "commander": "^2.9.0",
-    "lodash.frompairs": "^4.0.1",
-    "lodash.uniq": "^4.4.0",
-    "lodash.zip": "^4.1.0"
+    "commander": "2.9.0",
+    "lodash.frompairs": "4.0.1",
+    "lodash.uniq": "4.4.0",
+    "lodash.zip": "4.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
