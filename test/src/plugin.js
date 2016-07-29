@@ -22,6 +22,8 @@ describe('plugin', function() {
       const dir = path.join(__dirname, '../../node_modules');
 
       assert(plugin.resolve('mocha', dir) !== null);
+
+      assert(plugin.resolve('mocha') !== null);
     });
 
   });
