@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/tsukurite/templa.svg?branch=master)](https://travis-ci.org/tsukurite/templa)
 
-generator
+plugin based generator
 
 ## License
 
