@@ -2,7 +2,7 @@
   "name": "templa",
   "version": "0.1.2",
   "author": "sasa+1 <sasaplus1@gmail.com>",
-  "description": "generator",
+  "description": "plugin based generator",
   "bin": "./bin/templa",
   "main": "./index.js",
   "private": true,
