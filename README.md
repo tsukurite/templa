@@ -10,6 +10,26 @@ plugin based generator
 $ npm install tsukurite/templa
 ```
 
+## Functions
+
+### execute(configs[ ,dir])
+
+- `configs`
+  - `Object[]` - configs for template plugins
+- `dir`
+  - `String` - change require directory
+- `return`
+  - `String[]` - template plugin values
+
+### generate(configs[, dir])
+
+- `configs`
+  - `Object[]` - configs for template plugins
+- `dir`
+  - `String` - change require directory
+- `return`
+  - `String` - template plugin value
+
 ## Test
 
 ```sh
