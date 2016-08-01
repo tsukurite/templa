@@ -4,6 +4,12 @@
 
 plugin based generator
 
+## Installation
+
+```sh
+$ npm install tsukurite/templa
+```
+
 ## Test
 
 ```sh
