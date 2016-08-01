@@ -4,6 +4,14 @@
 
 plugin based generator
 
+## Test
+
+```sh
+$ npm install
+$ npm run build
+$ npm test
+```
+
 ## License
 
 The MIT license. Please see LICENSE file.
