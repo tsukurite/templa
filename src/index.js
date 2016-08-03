@@ -13,16 +13,7 @@ const executer = require('./executer'),
  * @return {String[]}
  */
 function execute(configs, dir) {
-  const pluginNames = uniq(
-    configs.map(
-      (config) => config.name
-    )
-  );
-
-  const plugins = pluginlist.compose(
-    pluginlist.unprefix(pluginNames),
-    pluginlist.resolve(pluginNames, dir)
-  );
+  const plugins = collectPlugins(configs, dir);
 
   return executer.execute(plugins, configs);
 }
@@ -35,18 +26,29 @@ function execute(configs, dir) {
  * @return {String}
  */
 function generate(configs, dir) {
+  const plugins = collectPlugins(configs, dir);
+
+  return executer.generate(plugins, configs);
+}
+
+/**
+ * collect plugins
+ *
+ * @param {Object[]} configs
+ * @param {String} [dir]
+ * @return {String}
+ */
+function collectPlugins(configs, dir) {
   const pluginNames = uniq(
     configs.map(
       (config) => config.name
     )
   );
 
-  const plugins = pluginlist.compose(
+  return pluginlist.compose(
     pluginlist.unprefix(pluginNames),
     pluginlist.resolve(pluginNames, dir)
   );
-
-  return executer.generate(plugins, configs);
 }
 
 module.exports = {
