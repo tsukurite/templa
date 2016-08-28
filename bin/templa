@@ -23,14 +23,14 @@ commander
   .usage('[options] <file>')
   .option('-f, --force', 'overwrite the file')
   .option('-o, --output <file>', 'output to file')
-  .option('--cwd <directory>', 'change working directory')
+  .option('--require-dir <directory>', 'change require directory')
   .parse(process.argv);
 
 //------------------------------------------------------------------------------
 
 var isForce = !!commander.force;
 
-var cwd = commander.cwd;
+var requireDir = commander.requireDir;
 
 var input = commander.args[0],
     output = commander.output;
@@ -66,7 +66,7 @@ switch (path.extname(input)) {
 
 //------------------------------------------------------------------------------
 
-var result = templa.generate(configs, cwd);
+var result = templa.generate(configs, requireDir);
 
 if (output) {
   try {
