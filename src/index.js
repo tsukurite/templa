@@ -3,7 +3,8 @@
 const uniq = require('lodash.uniq');
 
 const executer = require('./executer'),
-      pluginlist = require('./pluginlist');
+      pluginlist = require('./pluginlist'),
+      plugin = require('./plugin');
 
 /**
  * execute compile
@@ -15,7 +16,10 @@ const executer = require('./executer'),
 function execute(configs, dir) {
   const plugins = collectPlugins(configs, dir);
 
-  return executer.execute(plugins, configs);
+  return executer.execute(
+    plugins,
+    unprefixConfigName(configs)
+  );
 }
 
 /**
@@ -28,7 +32,10 @@ function execute(configs, dir) {
 function generate(configs, dir) {
   const plugins = collectPlugins(configs, dir);
 
-  return executer.generate(plugins, configs);
+  return executer.generate(
+    plugins,
+    unprefixConfigName(configs)
+  );
 }
 
 /**
@@ -49,6 +56,20 @@ function collectPlugins(configs, dir) {
     pluginlist.unprefix(pluginNames),
     pluginlist.resolve(pluginNames, dir)
   );
+}
+
+/**
+ * unprefix config name within configs
+ *
+ * @param {Object[]} configs
+ * @return {Object[]}
+ */
+function unprefixConfigName(configs) {
+  configs.forEach(function(config) {
+    config.name = plugin.unprefix(config.name);
+  });
+
+  return configs;
 }
 
 module.exports = {
