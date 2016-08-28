@@ -10,6 +10,41 @@ plugin based generator
 $ npm install tsukurite/templa
 ```
 
+## Usage
+
+write `index.json` for output config.
+
+```json
+[
+  {
+    "name": "hello-to-the-name",
+    "data": {
+      "name": "Alice"
+    }
+  },
+  {
+    "name": "hello-to-the-name",
+    "data": {
+      "name": "Bob"
+    }
+  }
+]
+```
+
+install plugin modules.
+
+```sh
+$ npm install ./templa-te-hello-to-the-name
+```
+
+execute `templa`.
+
+```sh
+$ ./node_modules/.bin/templa ./index.json
+Hi, Alice!
+Hi, Bob!
+```
+
 ## Functions
 
 ### execute(configs[ ,dir])
