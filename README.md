@@ -65,6 +65,25 @@ Hi, Bob!
 - `return`
   - `String` - template plugin value
 
+## How to write a template plugin
+
+write `package.json` and `index.js`.
+
+```json
+{
+  "name": "templa-te-hello-to-the-name",
+  "version": "0.0.0",
+  "main": "./index.js",
+  "private": true
+}
+```
+
+```js
+module.exports = function(data) {
+  return 'Hi, ' + data.name + '!\n';
+};
+```
+
 ## Test
 
 ```sh
