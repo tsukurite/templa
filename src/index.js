@@ -65,11 +65,11 @@ function collectPlugins(configs, dir) {
  * @return {Object[]}
  */
 function unprefixConfigName(configs) {
-  configs.forEach(function(config) {
-    config.name = plugin.unprefix(config.name);
-  });
-
-  return configs;
+  return configs.map(
+    (config) => Object.assign({}, config, {
+      name: plugin.unprefix(config.name),
+    })
+  );
 }
 
 module.exports = {
