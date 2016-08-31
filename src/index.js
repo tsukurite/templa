@@ -3,7 +3,8 @@
 const uniq = require('lodash.uniq');
 
 const executer = require('./executer'),
-      pluginlist = require('./pluginlist');
+      pluginlist = require('./pluginlist'),
+      plugin = require('./plugin');
 
 /**
  * execute compile
@@ -13,18 +14,12 @@ const executer = require('./executer'),
  * @return {String[]}
  */
 function execute(configs, dir) {
-  const pluginNames = uniq(
-    configs.map(
-      (config) => config.name
-    )
-  );
+  const plugins = collectPlugins(configs, dir);
 
-  const plugins = pluginlist.compose(
-    pluginlist.unprefix(pluginNames),
-    pluginlist.resolve(pluginNames, dir)
+  return executer.execute(
+    plugins,
+    unprefixConfigName(configs)
   );
-
-  return executer.execute(plugins, configs);
 }
 
 /**
@@ -35,18 +30,46 @@ function execute(configs, dir) {
  * @return {String}
  */
 function generate(configs, dir) {
+  const plugins = collectPlugins(configs, dir);
+
+  return executer.generate(
+    plugins,
+    unprefixConfigName(configs)
+  );
+}
+
+/**
+ * collect plugins
+ *
+ * @param {Object[]} configs
+ * @param {String} [dir]
+ * @return {String}
+ */
+function collectPlugins(configs, dir) {
   const pluginNames = uniq(
     configs.map(
       (config) => config.name
     )
   );
 
-  const plugins = pluginlist.compose(
+  return pluginlist.compose(
     pluginlist.unprefix(pluginNames),
     pluginlist.resolve(pluginNames, dir)
   );
+}
 
-  return executer.generate(plugins, configs);
+/**
+ * unprefix config name within configs
+ *
+ * @param {Object[]} configs
+ * @return {Object[]}
+ */
+function unprefixConfigName(configs) {
+  return configs.map(
+    (config) => Object.assign({}, config, {
+      name: plugin.unprefix(config.name),
+    })
+  );
 }
 
 module.exports = {
