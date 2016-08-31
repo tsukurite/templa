@@ -1,6 +1,6 @@
 {
   "name": "templa",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "author": "sasa+1 <sasaplus1@gmail.com>",
   "description": "plugin based generator",
   "bin": "./bin/templa",
