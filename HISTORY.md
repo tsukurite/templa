@@ -1,3 +1,8 @@
+# 1.0.0 / 2016-08-31
+
+- fix plugin name in config
+- change option name
+
 # 0.1.2 / 2016-07-29
 
 - fix module loading
